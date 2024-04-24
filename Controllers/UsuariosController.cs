@@ -18,20 +18,7 @@ namespace Gestion_de_Turnos.Controllers
             return View(await _context.Usuarios.ToListAsync());
         }
 
-        public IActionResult Create() 
-        {
-            return View();
-        }
 
-        [HttpPost]
-        public async Task<IActionResult> Add(Usuario usuario)
-        {
-            return Json("Todo nice");
-            await _context.Usuarios.AddAsync(usuario);
-            _context.SaveChanges();
-            return RedirectToAction("Index", "Usuarios");
-
-        }
     }
 }
 
