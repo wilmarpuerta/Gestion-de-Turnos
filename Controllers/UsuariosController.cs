@@ -1,4 +1,5 @@
 using Gestion_de_Turnos.Data;
+using Gestion_de_Turnos.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +17,8 @@ namespace Gestion_de_Turnos.Controllers
         {
             return View(await _context.Usuarios.ToListAsync());
         }
+
+
     }
 }
 
