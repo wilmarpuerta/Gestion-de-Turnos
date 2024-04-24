@@ -7,4 +7,9 @@
     <RootNamespace>Gestion_de_Turnos</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="wwwroot\icons\Check.svg" />
+    <_ContentIncludedByDefault Remove="wwwroot\icons\x.svg" />
+  </ItemGroup>
+
 </Project>
