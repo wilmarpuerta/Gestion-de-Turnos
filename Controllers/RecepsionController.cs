@@ -2,6 +2,7 @@ using System.Diagnostics;
 using Gestion_de_Turnos.Data;
 using Microsoft.AspNetCore.Mvc;
 using Gestion_de_Turnos.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Gestion_de_Turnos.Controllers
 {
@@ -31,6 +32,19 @@ namespace Gestion_de_Turnos.Controllers
       await _context.Usuarios.AddAsync(usuario);
       _context.SaveChanges();
       return RedirectToAction("Index", "Recepsion");
+    }
+
+    public async Task<IActionResult> Edit(int? id)
+    {
+      return View(await _context.Usuarios.FirstOrDefaultAsync(m => m.Id == id));
+    }
+
+    [HttpPost]
+    public IActionResult Edit(int id, Usuario usuario)
+    {
+      _context.Usuarios.Update(usuario);
+      _context.SaveChanges();
+      return RedirectToAction("Index");
     }
 
   }
