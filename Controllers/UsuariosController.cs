@@ -13,12 +13,20 @@ namespace Gestion_de_Turnos.Controllers
         {
             _context = context;
         }
-        public async Task <IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Usuarios.ToListAsync());
+            return View();
         }
 
-
+        public IActionResult UsuarioR()
+        {
+            return View();
+        }
+        
+        public IActionResult UsuarioN()
+        {
+            return View();
+        }
     }
 }
 
