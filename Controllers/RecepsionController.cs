@@ -28,11 +28,9 @@ namespace Gestion_de_Turnos.Controllers
     [HttpPost]
     public async Task<IActionResult> Add(Usuario usuario)
     {
-        return Json("Todo nice");
-        await _context.Usuarios.AddAsync(usuario);
-        _context.SaveChanges();
-        return RedirectToAction("Index", "Usuarios");
-
+      await _context.Usuarios.AddAsync(usuario);
+      _context.SaveChanges();
+      return RedirectToAction("Index", "Recepsion");
     }
 
   }
