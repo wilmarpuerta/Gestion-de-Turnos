@@ -3,7 +3,6 @@
     
 }
 
-
 <div class="container-fluid">
     <div class="row d-flex justify-content-center align-items-center">
         <div class="col text-center p-4">
@@ -62,7 +61,7 @@
 
                     <div class="col-6">
                         <label asp-for="TipoAfiliacion">Tipo Afiliacion</label>
-                        <select class="form-control"  asp-for="TipoAfiliacion">
+                        <select class="form-control" asp-for="TipoAfiliacion">
                             <option value=" ">Seleccione Tipo de Afiliación </option>
                             <option value="Cotizante">Cotizante</option>
                             <option value="Beneficiario">Beneficiario</option>
@@ -74,7 +73,40 @@
         </div>
         <div class="d-flex justify-content-between col-8 mt-3">
             <a class="btn btn-outline-dark shadow" asp-controller="Recepsion" asp-action="Index">Atras</a>
-            <button class="btn btn-outline-dark shadow" type="submit">Guardar</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Guardar</button>
+        </div>
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content d-flex justify-content-center m-3">
+                    <div class="d-flex justify-content-center m-3">
+                        <ion-icon class="icon-modal" name="checkmark-circle-outline"></ion-icon>
+                    </div>
+                    <div class="modal-body">
+                        <p class="text-modal">¡Datos creados correctamente!</p>
+                    </div>
+                    <div class="d-flex justify-content-center m-3">
+                        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">Ok</button>
+                    </div>
+                </div>
+            </div>
         </div>
     </form>     
 </div>
+
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+<style>
+    .text-modal
+    {
+        text-align: center;
+        font-size: 20px;
+        color: #01d101;
+    }
+
+    .icon-modal
+    {
+        font-size: 80px;
+        color: #01d101;
+    }
+</style>
