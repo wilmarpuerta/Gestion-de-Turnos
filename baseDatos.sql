@@ -13,7 +13,7 @@ CREATE TABLE Usuarios (
 CREATE TABLE Turnos (
   Id INT PRIMARY KEY AUTO_INCREMENT,
   TipoServicio VARCHAR(20),
-  FechaHoraTurno VARCHAR(20),
+  FechaHoraTurno DATETIME,
   Estado VARCHAR(20),-- en espera, en proceso, finalizado, ausente
   IdUsuario INT,
   FOREIGN KEY (IdUsuario) REFERENCES Usuarios(Id)
@@ -22,7 +22,7 @@ CREATE TABLE Turnos (
 
 DROP TABLE usuarios
 
-DROP TABLE turnos
+DROP TABLE Turnos
 
 INSERT INTO `Usuarios`(`Nombre`,`Apellido`,`Documento`,`CorreoElectronico`,`Direccion`,`Telefono`,`FechaNacimiento`,`TipoAfiliacion`) VALUES('Mariana','Bedoya','9876546','mari@gmail.com','calle feliz','654654','2024-04-03','Cotizante');
 
