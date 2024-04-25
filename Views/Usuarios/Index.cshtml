@@ -9,9 +9,9 @@
     <div>
         <div class="mb-3">
             <label for="NI" class="form-label fs-5" style="margin-top: 30px; padding-right: 30px">Número de documento</label>
-            <input type="text" class="form-control mb-3" id="NI">
+            <input type="text" class="form-control mb-3" id="NI" name="NI">
         </div>
-        <button type="button" class="btn btn-primary mt-3 text-center" id="btn-ingresar">No soy usuario</button>
+        <button type="button" class="btn btn-primary mt-3 text-center" id="btn-ingresar" asp-action="UsuarioN">No soy usuario</button>
     </div>
     <div class="text-center d-grid gap-2">
         <div class="row gap-2 gap-2">
@@ -54,8 +54,8 @@
             <button class="col fs-3 border border-dark" onclick="agregarNumero(0)" style="padding: 0 16px">
                 0
             </button>
-            <button class="col fs-2 border border-dark bg-success" onclick="NumberCheck">
-                ✓
+            <button class="col fs-2 border border-dark bg-success" asp-action="UsuarioR">
+                <a asp-action="UsuarioR">✓</a>
             </button>
         </div>
     </div>

@@ -18,8 +18,9 @@ namespace Gestion_de_Turnos.Controllers
             return View();
         }
 
-        public IActionResult UsuarioR()
+        public IActionResult UsuarioR(string NI)
         {
+            var usuario = _context.Usuarios.Where(x => x.Documento == NI).FirstOrDefault();
             return View();
         }
         
