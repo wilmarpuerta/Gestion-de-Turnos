@@ -40,10 +40,10 @@ namespace Gestion_de_Turnos.Controllers
     }
 
     [HttpPost]
-    public IActionResult Edit(int id, Usuario usuario)
+    public async Task <IActionResult> Edit(int id, Usuario usuario)
     {
       _context.Usuarios.Update(usuario);
-      _context.SaveChanges();
+      await _context.SaveChangesAsync();
       return RedirectToAction("Index");
     }
 
