@@ -2,7 +2,7 @@
 
 @{
   Layout = null;
-}
+} 
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,6 +27,7 @@
             </a>
             <a class="d-block p-3 text-light" style="text-decoration: none;" asp-area="" asp-controller="" asp-action="">
                 <ion-icon name="sync-circle-outline" class="me-1 lead"></ion-icon>Aqui muestra el turno</a>
+                <input type="text" id="nombreUsuario" placeholder="Nombre del usuario">
         </div>
     </div>
     <div class="w-100">
@@ -78,7 +79,9 @@
                                   <button style="width: 150px;" type="submit" class="btn btn-outline-dark">Siguiente</button>
                                 </div>
                               </div>
-                              
+                              <div class="col-12">
+                                  <button id="btnLlamarUsuario" style="width: 150px;" type="button" class="btn btn-outline-dark">Llamar Usuario</button>
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -88,3 +91,29 @@
     </div>
 </div>
   </body>
+<script>
+    document.getElementById('btnLlamarUsuario').addEventListener('click', function() {
+        // Obtener el valor del input con el nombre del usuario
+        var nombreUsuario = document.getElementById('nombreUsuario').value;
+
+        // Verificar si se ingresó un nombre de usuario
+        if (nombreUsuario.trim() === '') {
+            alert('Por favor, ingresa el nombre del usuario.');
+            return;
+        }
+
+        // Texto que deseas que se reproduzca en altavoz
+        var texto = 'Llamando a ' + nombreUsuario;
+
+        // Verificar si el navegador admite la síntesis de voz
+        if ('speechSynthesis' in window) {
+            // Crear un objeto SpeechSynthesisUtterance
+            var mensaje = new SpeechSynthesisUtterance(texto);
+
+            // Reproducir el texto en altavoz
+            window.speechSynthesis.speak(mensaje);
+        } else {
+            alert('Tu navegador no admite la síntesis de voz.');
+        }
+    });
+</script>
