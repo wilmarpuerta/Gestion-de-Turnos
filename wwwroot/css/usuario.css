@@ -1,0 +1,30 @@
+﻿
+/* Estilo de seccion de usuarios (UsuarioR UsuarioN)*/
+
+.section-user{
+    display: flex; 
+    justify-content: center; 
+    gap: 60px;
+    padding-top: 100px
+}
+
+.container-service{
+    display: flex; 
+    flex-direction: column;
+    gap: 20px;
+}
+
+.container-service div{
+    width: 250px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 3px solid black;
+    user-select: none;
+}
+
+.container-service button{
+    border: none; 
+    background: none
+}

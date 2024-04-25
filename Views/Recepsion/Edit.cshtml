@@ -1,0 +1,78 @@
+@{
+    ViewData["Title"] = "Editar Usuario"; 
+}
+@model Usuario
+
+<div class="container-fluid">
+    <div class="row d-flex justify-content-center align-items-center">
+        <div class="col text-center p-4">
+            <h1>Editar Usuario</h1>
+        </div>
+        <hr class="text-dark">
+    </div>
+</div>
+
+<div class="container">
+    <form asp-action="Edit" asp-controller="Recepsion"  asp-route-id="@Model.Id" method="post">
+        <div class="card col-8 mt-3">
+            <div class="card-body">
+                <div class="form-grup mb-4 row">
+                    <div class="col-6">
+                        <label asp-for="Nombre"></label>
+                        <input class="form-control" asp-for="Nombre" value="@Model.Nombre">
+                    </div>
+
+                    <div class="col-6">
+                        <label asp-for="Apellido"></label>
+                        <input class="form-control" asp-for="Apellido" value="@Model.Apellido">
+                    </div>
+                </div>
+
+                <div class="form-grup mb-4 row">
+                    <div class="col-6">
+                        <label asp-for="Documento"></label>
+                        <input class="form-control" asp-for="Documento" value="@Model.Documento">
+                    </div>
+
+                    <div class="col-6">
+                        <label asp-for="CorreoElectronico"></label>
+                        <input class="form-control" asp-for="CorreoElectronico" value="@Model.CorreoElectronico">
+                    </div>
+                </div>
+
+                <div class="form-grup mb-4 row">
+                    <div class="col-6">
+                        <label asp-for="Direccion"></label>
+                        <input class="form-control" asp-for="Direccion" value="@Model.Direccion">
+                    </div>
+
+                    <div class="col-6">
+                        <label asp-for="Telefono"></label>
+                        <input class="form-control" asp-for="Telefono" value="@Model.Telefono">
+                    </div>
+                </div>
+
+                <div class="form-grup mb-4 row">
+                    <div class="col-6">
+                        <label asp-for="FechaNacimiento">Fecha Nacimiento</label>
+                        <input class="form-control" asp-for="FechaNacimiento" type="date" value="@Model.FechaNacimiento">
+                    </div>
+
+                    <div class="col-6">
+                        <label asp-for="TipoAfiliacion">Tipo Afiliacion</label>
+                        <select class="form-control"  asp-for="TipoAfiliacion">
+                            <option value="TipoAfiliacion"></option>
+                            <option value="Cotizante">Cotizante</option>
+                            <option value="Beneficiario">Beneficiario</option>
+                            <option value="Subsidiado">Subsidiado</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between col-8 mt-3">
+            <a class="btn btn-outline-dark shadow" asp-controller="Recepsion" asp-action="Index">Atras</a>
+            <button class="btn btn-outline-dark shadow" type="submit">Guardar</button>
+        </div>
+    </form>
+</div>

@@ -11,5 +11,6 @@ namespace Gestion_de_Turnos.Data
         }
 
         public DbSet<Usuario> Usuarios { get; set;}
+        public DbSet<Turno> Turnos { get; set;}
     }
 }
