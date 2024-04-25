@@ -18,14 +18,20 @@ namespace Gestion_de_Turnos.Controllers
             return View();
         }
 
+        [HttpGet]
         public IActionResult UsuarioR(string NI)
         {
             var usuario = _context.Usuarios.Where(x => x.Documento == NI).FirstOrDefault();
-            return View();
+            if (usuario!= null)
+            {
+                HttpContext.Session.SetString("DocumentoUser", NI);
+            }
+            return View(usuario);
         }
         
-        public IActionResult UsuarioN()
+        public IActionResult UsuarioN(string NI)
         {
+            HttpContext.Session.SetString("DocumentoUser", NI);
             return View();
         }
     }

@@ -6,6 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+// Add Session
+builder.Services.AddSession();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
 builder.Services.AddDbContext<BaseContext> (options => 
                             options.UseMySql(
                                 builder.Configuration.GetConnectionString("MySqlConnection"),
@@ -27,6 +31,9 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+// Session
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
