@@ -36,7 +36,7 @@
                     <div class="row">
                         <div class="col-md-12 mt-5">
                             <div class="d-flex align-items-end flex-column mb-3">
-                                <button style="width: 150px;" type="submit" class="btn btn-primary">Crear</button>
+                                <a style="width: 150px;" asp-controller="Recepsion" asp-action="Create" class="btn btn-outline-dark">Crear</a>
                               </div>
                             <h1 class="text-center font-weight-bold mb-5">Nombre Completo</h1>
                             <h3 class="text-center font-weight-bold mb-5">Pepito Perez</h3>
@@ -68,14 +68,17 @@
                                 <div class="form-control">123456789</div>
                               </div>
                               <div class="col-12 text-center">
-                                <button style="width: 150px;" type="submit" class="btn btn-primary mt-5">Editar</button>
+                                <a style="width: 150px;" type="submit" asp-controller="Recepsion" asp-action="Edit" class="btn btn-outline-dark mt-5">Editar</a>
                               </div>
-                              <div class="col-12">
-                                <button style="width: 150px;" type="submit" class="btn btn-primary mt-3">Ausente</button>
+                               <div class="d-flex"> 
+                                <div class="col-6">
+                                  <button style="width: 150px;" type="submit" class="btn btn-outline-dark mt-3">Ausente</button>
+                                </div>
+                                <div class="col-6 d-flex align-items-end flex-column">
+                                  <button style="width: 150px;" type="submit" class="btn btn-outline-dark">Siguiente</button>
+                                </div>
                               </div>
-                              <div class="col-12 d-flex align-items-end flex-column mt-5">
-                                <button style="width: 150px;" type="submit" class="btn btn-primary">Siguiente</button>
-                              </div>
+                              
                             </form>
                         </div>
                     </div>
