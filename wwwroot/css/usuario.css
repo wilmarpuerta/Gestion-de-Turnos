@@ -23,3 +23,8 @@
     border: 3px solid black;
     user-select: none;
 }
+
+.container-service button{
+    border: none; 
+    background: none
+}
