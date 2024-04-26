@@ -116,6 +116,16 @@ namespace Gestion_de_Turnos.Controllers
         public async Task<IActionResult> IG(string tipoServicio, Turno t)
         {
             var usuario = _context.Usuarios.Where(x => x.Documento == HttpContext.Session.GetString("DocumentoUser")).FirstOrDefault();
+
+            if (usuario == null){
+                t.TipoServicio = "Información en general";
+                t.FechaHoraTurno = DateTime.Now;
+                t.Estado = "En espera";
+                t.IdUsuario = 7;
+                _context.Turnos.Add(t);
+                _context.SaveChanges();
+                return RedirectToAction("Turno");
+            }
             t.TipoServicio = "Información en general";
             t.FechaHoraTurno = DateTime.Now;
             t.Estado = "En espera";
@@ -129,6 +139,15 @@ namespace Gestion_de_Turnos.Controllers
         public async Task<IActionResult> AP(string tipoServicio, Turno t)
         {
             var usuario = _context.Usuarios.Where(x => x.Documento == HttpContext.Session.GetString("DocumentoUser")).FirstOrDefault();
+            if (usuario == null){
+                t.TipoServicio = "Atencion Prioritaria";
+                t.FechaHoraTurno = DateTime.Now;
+                t.Estado = "En espera";
+                t.IdUsuario = 7;
+                _context.Turnos.Add(t);
+                _context.SaveChanges();
+                return RedirectToAction("Turno");
+            }
             t.TipoServicio = "Atencion Prioritaria";
             t.FechaHoraTurno = DateTime.Now;
             t.Estado = "En espera";

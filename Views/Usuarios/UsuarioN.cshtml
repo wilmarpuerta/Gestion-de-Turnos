@@ -5,12 +5,20 @@
 
 <h2 class="text-center mt-5">Seleccione el servicio</h2>
 
-<section class="section-user">
+<section class="section-user in">
     <div class="container-service">
-        <div class="fs-4">Información general</div>
+        <form asp-action="IG" method="post">
+            <button>
+                <div class="fs-4">Información en<br />general</div>
+            </button>
+        </form>
     </div>
     <div class="container-service">
-        <div class="fs-4">Atención prioritaria</div>
+       <form asp-action="AP" method="post">
+            <button>
+                <div class="fs-4">Atención prioritaria</div>
+            </button>
+        </form>
     </div>
 </section>
 <div class="d-flex justify-content-center mt-4">
