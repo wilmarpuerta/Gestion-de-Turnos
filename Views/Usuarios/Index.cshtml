@@ -5,58 +5,60 @@
 <h1 class="text-center mt-5">Bienvenido</h1>
 
 <p class="text-center mt-3 fs-3">Ingrese por favor su número de documento de identifcación</p>
+<form asp-controller="Usuarios" asp-action="UsuarioR" method="get">
 <div class="d-flex gap-4" style="margin-top: 100px; justify-content: space-around; padding: 0 20%">
     <div>
         <div class="mb-3">
             <label for="NI" class="form-label fs-5" style="margin-top: 30px; padding-right: 30px">Número de documento</label>
-            <input type="text" class="form-control mb-3" id="NI">
+            <input type="text" class="form-control mb-3" id="NI" name="NI">
         </div>
-        <button type="button" class="btn btn-primary mt-3 text-center" id="btn-ingresar">No soy usuario</button>
+        <a asp-action="UsuarioN" class="btn btn-primary mt-3 text-center">No soy usuario</a>
     </div>
     <div class="text-center d-grid gap-2">
         <div class="row gap-2 gap-2">
-            <button class="col fs-3 border border-dark" onclick="agregarNumero(1)">
+            <button type="button" class="col fs-3 border border-dark" onclick="agregarNumero(1)">
                 1
             </button>
-            <button class="col fs-3 border border-dark" onclick="agregarNumero(2)">
+            <button type="button" class="col fs-3 border border-dark" onclick="agregarNumero(2)">
                 2
             </button>
-            <button class="col fs-3 border border-dark" onclick="agregarNumero(3)">
+            <button type="button" type="button" class="col fs-3 border border-dark" onclick="agregarNumero(3)">
                 3
             </button>
         </div>
         <div class="row gap-2">
-            <button class="col fs-3 border border-dark" onclick="agregarNumero(4)">
+            <button type="button" class="col fs-3 border border-dark" onclick="agregarNumero(4)">
                 4
             </button>
-            <button class="col fs-3 border border-dark" onclick="agregarNumero(5)">
+            <button type="button" class="col fs-3 border border-dark" onclick="agregarNumero(5)">
                 5
             </button>
-            <button class="col fs-3 border border-dark" onclick="agregarNumero(6)">
+            <button type="button" class="col fs-3 border border-dark" onclick="agregarNumero(6)">
                 6
             </button>
         </div>
         <div class="row gap-2">
-            <button class="col fs-3 border border-dark" onclick="agregarNumero(7)">
+            <button type="button" class="col fs-3 border border-dark" onclick="agregarNumero(7)">
                 7
             </button>
-            <button class="col fs-3 border border-dark" onclick="agregarNumero(8)">
+            <button type="button" class="col fs-3 border border-dark" onclick="agregarNumero(8)">
                 8
             </button>
-            <button class="col fs-3 border border-dark" onclick="agregarNumero(9)">
+            <button type="button" class="col fs-3 border border-dark" onclick="agregarNumero(9)">
                 9
             </button>
         </div>
         <div class="row gap-2">
-            <button class="col fs-3 border border-dark bg-danger" onclick="NumberDelete()" style="padding-right: 14px;">
+            <button type="button" class="col fs-3 border border-dark bg-danger" onclick="NumberDelete()" style="padding-right: 14px;">
                 ✕
             </button>
-            <button class="col fs-3 border border-dark" onclick="agregarNumero(0)" style="padding: 0 16px">
+            <button type="button" class="col fs-3 border border-dark" onclick="agregarNumero(0)" style="padding: 0 16px">
                 0
             </button>
-            <button class="col fs-2 border border-dark bg-success" onclick="NumberCheck">
+            <button type="submit" class="col fs-2 border border-dark bg-success">
                 ✓
             </button>
         </div>
     </div>
 </div>
+</form>

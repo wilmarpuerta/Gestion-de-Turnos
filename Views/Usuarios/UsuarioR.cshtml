@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Usuario";
+    ViewBag.Css = "usuario.css";
+}
+
+<h2 class="text-center mt-5">Seleccione el servicio @Model.Nombre</h2>
+<section class="section-user">
+    <div class="container-service">
+        <form asp-action="SC" method="post">
+            <button><div class="fs-4">Solicitud de citas</div></button>
+        </form>
+        <form asp-action="AM" method="post">
+        <button><div class="fs-4">Autorización de<br/>medicamentos</div></button>
+        </form>
+    </div>
+    <div class="container-service">
+        <form asp-action="PF" method="post">
+            <button><div class="fs-4">Pago de facturas</div></button>
+        </form>
+        <form asp-action="IG" method="post">
+        <button><div class="fs-4">Información en<br/>general</div></button>
+        </form>
+        </div>
+</section>
+<div class="text-center mt-5 fs-5">
+    <input type="checkbox"/>
+    <label>Atención prioritaria</label>
+</div>

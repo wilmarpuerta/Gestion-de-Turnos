@@ -12,9 +12,9 @@ CREATE TABLE Usuarios (
 
 CREATE TABLE Turnos (
   Id INT PRIMARY KEY AUTO_INCREMENT,
-  TipoServicio VARCHAR(20),
+  TipoServicio VARCHAR(30),
   FechaHoraTurno DATETIME,
-  Estado VARCHAR(20),-- en espera, en proceso, finalizado, ausente
+  Estado VARCHAR(10),-- en espera, en proceso, finalizado, ausente
   IdUsuario INT,
   FOREIGN KEY (IdUsuario) REFERENCES Usuarios(Id)
 )
