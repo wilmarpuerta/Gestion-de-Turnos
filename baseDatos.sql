@@ -19,6 +19,8 @@ CREATE TABLE Turnos (
   FOREIGN KEY (IdUsuario) REFERENCES Usuarios(Id)
 )
 
+SELECT * FROM Usuarios;
+SELECT * FROM Turnos;
 
 DROP TABLE usuarios
 
