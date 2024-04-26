@@ -9,7 +9,7 @@ namespace Gestion_de_Turnos.Controllers
     {
         public readonly BaseContext _context;
 
-        public UsuariosController(BaseContext context) 
+        public UsuariosController(BaseContext context)
         {
             _context = context;
         }
@@ -22,13 +22,15 @@ namespace Gestion_de_Turnos.Controllers
         public IActionResult UsuarioR(string NI)
         {
             var usuario = _context.Usuarios.Where(x => x.Documento == NI).FirstOrDefault();
-            if (usuario!= null)
+            if (usuario != null)
             {
                 HttpContext.Session.SetString("DocumentoUser", NI);
             }
             return View(usuario);
         }
-        
+
+
+
         public IActionResult UsuarioN(string NI)
         {
             HttpContext.Session.SetString("DocumentoUser", NI);
@@ -40,7 +42,7 @@ namespace Gestion_de_Turnos.Controllers
             var ultimoRegistro = _context.Turnos
                 .OrderByDescending(x => x.FechaHoraTurno)
                 .FirstOrDefault();
-            
+
             if (ultimoRegistro.TipoServicio == "Solicitud de citas")
             {
                 ViewBag.TurnoText = "SC" + "-" + ultimoRegistro.Id;
@@ -57,6 +59,10 @@ namespace Gestion_de_Turnos.Controllers
             {
                 ViewBag.TurnoText = "IG" + "-" + ultimoRegistro.Id;
             }
+            else if (ultimoRegistro.TipoServicio == "Atencion Prioritaria")
+            {
+                ViewBag.TurnoText = "AP" + "-" + ultimoRegistro.Id;
+            }
             return View();
         }
 
@@ -72,7 +78,7 @@ namespace Gestion_de_Turnos.Controllers
             _context.SaveChanges();
             return RedirectToAction("Turno");
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> AM(Turno t)
         {
@@ -85,7 +91,7 @@ namespace Gestion_de_Turnos.Controllers
             _context.SaveChanges();
             return RedirectToAction("Turno");
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> PF(Turno t)
         {
@@ -103,6 +109,19 @@ namespace Gestion_de_Turnos.Controllers
         {
             var usuario = _context.Usuarios.Where(x => x.Documento == HttpContext.Session.GetString("DocumentoUser")).FirstOrDefault();
             t.TipoServicio = "Información en general";
+            t.FechaHoraTurno = DateTime.Now;
+            t.Estado = "En espera";
+            t.IdUsuario = usuario.Id;
+            _context.Turnos.Add(t);
+            _context.SaveChanges();
+            return RedirectToAction("Turno");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AP(string tipoServicio, Turno t)
+        {
+            var usuario = _context.Usuarios.Where(x => x.Documento == HttpContext.Session.GetString("DocumentoUser")).FirstOrDefault();
+            t.TipoServicio = "Atencion Prioritaria";
             t.FechaHoraTurno = DateTime.Now;
             t.Estado = "En espera";
             t.IdUsuario = usuario.Id;
