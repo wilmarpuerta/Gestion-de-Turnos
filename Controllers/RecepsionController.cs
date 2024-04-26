@@ -23,6 +23,13 @@ namespace Gestion_de_Turnos.Controllers
       if (Turno == null)
       {
         var turnoEspera = _context.Turnos.FirstOrDefault(t => t.Estado == "En espera");
+
+        if (turnoEspera == null)
+        {
+          var user = _context.Usuarios.FirstOrDefault(u => u.Id == 7);
+          return View(user);
+        }
+        
         turnoEspera.Estado = "En proceso";
 
         _context.Turnos.Update(turnoEspera);
@@ -89,11 +96,8 @@ namespace Gestion_de_Turnos.Controllers
 
       if (turnoActual == null)
       {
-        var turnoEnProceso = _context.Turnos.FirstOrDefault(t => t.Estado == "En proceso");
-        turnoEnProceso.Estado = "No hay mas turnos";
-
-        _context.Turnos.Update(turnoEnProceso);
-        _context.SaveChanges();
+        ViewBag.TurnoText = "No hay mas turnos";
+        
         return View("Index");
 
       }
@@ -104,6 +108,11 @@ namespace Gestion_de_Turnos.Controllers
       _context.SaveChanges();
 
       var turnoSiguiente = _context.Turnos.FirstOrDefault(t => t.Estado == "En espera");
+
+      if (turnoSiguiente == null)
+      {
+        return View("Index");
+      }
       turnoSiguiente.Estado = "En proceso";
 
       _context.Turnos.Update(turnoSiguiente);
