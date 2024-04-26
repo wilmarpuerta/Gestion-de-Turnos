@@ -19,6 +19,7 @@ namespace Gestion_de_Turnos.Controllers
     public IActionResult Index()
     {
       var Turno = _context.Turnos.FirstOrDefault(t => t.Estado == "En proceso");
+      ViewBag.TurnoId = Turno.Id;
       
       if (Turno.TipoServicio == "Solicitud de citas")
       {
@@ -66,6 +67,24 @@ namespace Gestion_de_Turnos.Controllers
       _context.Usuarios.Update(usuario);
       await _context.SaveChangesAsync();
       return RedirectToAction("Index");
+    }
+
+    public IActionResult SiguienteTurno(int id)
+    {
+      var turnoActual = _context.Turnos.FirstOrDefault(t => t.Id == id);
+      turnoActual.Estado = "Finalizado";
+      
+      _context.Turnos.Update(turnoActual);
+      _context.SaveChanges();
+
+      var turnoSiguiente = _context.Turnos.FirstOrDefault(t => t.Estado == "En espera");
+      turnoSiguiente.Estado = "En proceso";
+      
+      _context.Turnos.Update(turnoSiguiente);
+      _context.SaveChanges();
+
+      return RedirectToAction("Index");
+
     }
 
   }
