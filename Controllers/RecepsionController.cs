@@ -11,19 +11,40 @@ namespace Gestion_de_Turnos.Controllers
 
     public readonly BaseContext _context;
 
-    public RecepsionController(BaseContext context) 
+    public RecepsionController(BaseContext context)
     {
-        _context = context;
+      _context = context;
     }
 
     public IActionResult Index()
     {
-      return View();
+      var Turno = _context.Turnos.FirstOrDefault(t => t.Estado == "En proceso");
+      
+      if (Turno.TipoServicio == "Solicitud de citas")
+      {
+        ViewBag.TurnoText = "SC" + "-" + Turno.Id;
+      }
+      else if (Turno.TipoServicio == "Autorización de medicamentos")
+      {
+        ViewBag.TurnoText = "AM" + "-" + Turno.Id;
+      }
+      else if (Turno.TipoServicio == "Pago de facturas")
+      {
+        ViewBag.TurnoText = "PF" + "-" + Turno.Id;
+      }
+      else if (Turno.TipoServicio == "Información en general")
+      {
+        ViewBag.TurnoText = "IG" + "-" + Turno.Id;
+      }
+      
+      var usuario =
+        _context.Usuarios.FirstOrDefault(u => u.Id == Turno.IdUsuario);
+      return View(usuario);
     }
 
-    public IActionResult Create() 
+    public IActionResult Create()
     {
-        return View();
+      return View();
     }
 
     [HttpPost]
@@ -40,7 +61,7 @@ namespace Gestion_de_Turnos.Controllers
     }
 
     [HttpPost]
-    public async Task <IActionResult> Edit(int id, Usuario usuario)
+    public async Task<IActionResult> Edit(int id, Usuario usuario)
     {
       _context.Usuarios.Update(usuario);
       await _context.SaveChangesAsync();
@@ -48,6 +69,5 @@ namespace Gestion_de_Turnos.Controllers
     }
 
   }
-
 }
 
