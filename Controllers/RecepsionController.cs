@@ -19,6 +19,17 @@ namespace Gestion_de_Turnos.Controllers
     public IActionResult Index()
     {
       var Turno = _context.Turnos.FirstOrDefault(t => t.Estado == "En proceso");
+
+      if (Turno == null)
+      {
+        var turnoEspera = _context.Turnos.FirstOrDefault(t => t.Estado == "En espera");
+        turnoEspera.Estado = "En proceso";
+
+        _context.Turnos.Update(turnoEspera);
+        _context.SaveChanges();
+        return View("Index");
+      }
+
       ViewBag.TurnoId = Turno.Id;
 
       if (Turno.TipoServicio == "Solicitud de citas")
@@ -41,6 +52,10 @@ namespace Gestion_de_Turnos.Controllers
       {
         ViewBag.TurnoText = "AP" + "-" + Turno.Id;
       }
+      else if (Turno.TipoServicio == "No hay mas turnos")
+      {
+        ViewBag.TurnoText = "No hay mas turnos";
+      }
 
       var usuario =
         _context.Usuarios.FirstOrDefault(u => u.Id == Turno.IdUsuario);
@@ -60,11 +75,6 @@ namespace Gestion_de_Turnos.Controllers
       return RedirectToAction("Index", "Recepsion");
     }
 
-    public async Task<IActionResult> Edit(int? id)
-    {
-      return View(await _context.Usuarios.FirstOrDefaultAsync(m => m.Id == id));
-    }
-
     [HttpPost]
     public async Task<IActionResult> Edit(int id, Usuario usuario)
     {
@@ -76,6 +86,18 @@ namespace Gestion_de_Turnos.Controllers
     public IActionResult SiguienteTurno(int id)
     {
       var turnoActual = _context.Turnos.FirstOrDefault(t => t.Id == id);
+
+      if (turnoActual == null)
+      {
+        var turnoEnProceso = _context.Turnos.FirstOrDefault(t => t.Estado == "En proceso");
+        turnoEnProceso.Estado = "No hay mas turnos";
+
+        _context.Turnos.Update(turnoEnProceso);
+        _context.SaveChanges();
+        return View("Index");
+
+      }
+
       turnoActual.Estado = "Finalizado";
 
       _context.Turnos.Update(turnoActual);
