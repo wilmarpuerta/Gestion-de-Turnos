@@ -17,33 +17,40 @@
                             <th>Modulo</th>
                             <th>Turno</th>
                         </tr>
-                        <tr>
-                            <td><b>1</b></td>
-                            <td>
-                               <p>@ViewBag.TurnoText</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>2</b></td>
-                            <td>
-                                <p>@ViewBag.TurnoText</p>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>3</b></td>
-                            <td>
-                                @ViewBag.TurnoText
-                            </td>
-                        </tr>
-                        <tr>
-                            <td><b>4</b></td>
-                            <td>
-                                @ViewBag.TurnoText
-                            </td>
-                        </tr>
+                        @for (int i = 0; i < 4; i++){
+                            foreach (var Turno in Model){
+                        
+                            if (Turno.Estado == "En espera"){
 
+                                if (Turno.TipoServicio == "Solicitud de citas")
+                                {
+                                    ViewBag.TurnoText = "SC" + "-" + Turno.Id;
+                                }
+                                else if (Turno.TipoServicio == "Autorización de medicamentos")
+                                {
+                                    ViewBag.TurnoText = "AM" + "-" + Turno.Id;
+                                }
+                                else if (Turno.TipoServicio == "Pago de facturas")
+                                {
+                                    ViewBag.TurnoText = "PF" + "-" + Turno.Id;
+                                }
+                                else if (Turno.TipoServicio == "Información en general")
+                                {
+                                    ViewBag.TurnoText = "IG" + "-" + Turno.Id;
+                                }
+                                <tr>
+                                    <td>
+                                        <b>1</b>
+                                    </td>
+                                    <td>
+                                        <p>@ViewBag.TurnoText</p>
+                                    </td>
+                                </tr>
+                                }
+                            }
+                        break;
+                        }
                     </table>
-
                 </div>
                 <div class="col-8 d-flex justify-content-center align-items-center">
                     <div class="column text-center">
