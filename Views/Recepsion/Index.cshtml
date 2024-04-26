@@ -1,119 +1,122 @@
-
-
 @{
   Layout = null;
-} 
+}
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Gestion_de_Turnos</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Gestion_de_Turnos.styles.css" asp-append-version="true" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>@ViewData["Title"] - Gestion_de_Turnos</title>
+  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+  <link rel="stylesheet" href="~/Gestion_de_Turnos.styles.css" asp-append-version="true" />
 </head>
-  <body>
-@model Usuario
+
+<body>
+  @model Usuario
   <div class="d-flex">
     <div style="min-height: 100vh; background-color: #121D59;" class="sidebar-container">
-        <div style="padding: .875rem 1.25rem;" class="logo">
-            <h4 class="text-light font-weight-bold"> Solicitud de Servicio</h4>
-        </div>
-        <div style="width: 18rem;"  class="menu">
-            <a class="d-block p-3 text-light" style="text-decoration: none;" asp-area="" asp-controller="" asp-action=""> 
-                <ion-icon name="person-add-outline" class="text-center me-1 lead"></ion-icon> Turno
-            </a>
-            <a class="d-block p-3 text-light" style="text-decoration: none;" asp-area="" asp-controller="" asp-action="">
-                <ion-icon name="sync-circle-outline" class="me-1 lead"></ion-icon>Aqui muestra el turno</a>
-                <input type="text" id="nombreUsuario" value="@ViewBag.TurnoText">
-        </div>
+      <div style="padding: .875rem 1.25rem;" class="logo">
+        <h4 class="text-light font-weight-bold"> Solicitud de Servicio</h4>
+      </div>
+      <div style="width: 18rem;" class="menu">
+        <a class="d-block p-3 text-light" style="text-decoration: none;" asp-area="" asp-controller="" asp-action="">
+          <ion-icon name="person-add-outline" class="text-center me-1 lead"></ion-icon> Turno
+        </a>
+        <a class="d-block p-3 text-light" style="text-decoration: none;" asp-area="" asp-controller="" asp-action="">
+          <ion-icon name="sync-circle-outline" class="me-1 lead"></ion-icon>Aqui muestra el turno</a>
+        <input type="text" id="nombreUsuario" value="@ViewBag.TurnoText">
+      </div>
     </div>
     <div class="w-100">
-         <div style="overflow-y: auto; height: 100vh; padding-bottom: 5rem;" class="content">
-            <section>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12 mt-5">
-                            <div class="d-flex align-items-end flex-column mb-3">
-                                <a style="width: 150px;" asp-controller="Recepsion" asp-action="Create" class="btn btn-outline-dark">Crear</a>
-                              </div>
-                            <h1 class="text-center font-weight-bold mb-5">Nombre Completo</h1>
-                            <h3 class="text-center font-weight-bold mb-5">@Model.Nombre</h3>
-                            <hr/>
-                            <form class="row g-3">
-                              <div class="col-md-6">
-                                <label for="inputEmail4" class="form-label">Documento</label>
-                                <div class="form-control">@Model.Documento</div>
-                                
-                              </div>
-                              <div class="col-md-6">
-                                <label for="inputPassword4" class="form-label">Fecha de Nacimiento</label>
-                                <div class="form-control">@Model.FechaNacimiento</div>
-                              </div>
-                              <div class="col-6">
-                                <label for="inputAddress" class="form-label">Correo</label>
-                                <div class="form-control">@Model.CorreoElectronico</div>
-                              </div>
-                              <div class="col-6">
-                                <label for="inputAddress2" class="form-label">Tipo de afiliacion</label>
-                                <div class="form-control">@Model.TipoAfiliacion</div>
-                              </div>
-                              <div class="col-md-6">
-                                <label for="inputCity" class="form-label">Direccion</label>
-                                <div class="form-control">@Model.Direccion</div>
-                              </div>
-                              <div class="col-md-6">
-                                <label for="inputState" class="form-label">Telefono</label>
-                                <div class="form-control">@Model.Telefono</div>
-                              </div>
-                              <div class="col-12 text-center">
-                                <a style="width: 150px;" type="submit" asp-controller="Recepsion" asp-action="Edit" class="btn btn-outline-dark mt-5">Editar</a>
-                              </div>
-                               <div class="d-flex"> 
-                                <div class="col-6">
-                                  <button style="width: 150px;" type="submit" class="btn btn-outline-dark">Ausente</button>
-                                </div>
-                                <div class="col-6 d-flex align-items-end flex-column">
-                                  <a style="width: 150px;" class="btn btn-outline-dark" asp-action="SiguienteTurno" asp-route-id="@ViewBag.TurnoId">Siguiente</a>
-                                </div>
-                              </div>
-                              <div class="col-12">
-                                  <button id="btnLlamarUsuario" style="width: 150px;" type="button" class="btn btn-outline-dark">Llamar Usuario</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+      <div style="overflow-y: auto; height: 100vh; padding-bottom: 5rem;" class="content">
+        <section>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-12 mt-5">
+                <div class="d-flex align-items-end flex-column mb-3">
+                  <a style="width: 150px;" asp-controller="Recepsion" asp-action="Create"
+                    class="btn btn-outline-dark">Crear</a>
                 </div>
-            </section>
-        </div>
+                <h1 class="text-center font-weight-bold mb-5">Nombre Completo</h1>
+                <h3 class="text-center font-weight-bold mb-5">@Model.Nombre</h3>
+                <hr />
+                <form class="row g-3">
+                  <div class="col-md-6">
+                    <label for="inputEmail4" class="form-label">Documento</label>
+                    <div class="form-control">@Model.Documento</div>
+
+                  </div>
+                  <div class="col-md-6">
+                    <label for="inputPassword4" class="form-label">Fecha de Nacimiento</label>
+                    <div class="form-control">@Model.FechaNacimiento</div>
+                  </div>
+                  <div class="col-6">
+                    <label for="inputAddress" class="form-label">Correo</label>
+                    <div class="form-control">@Model.CorreoElectronico</div>
+                  </div>
+                  <div class="col-6">
+                    <label for="inputAddress2" class="form-label">Tipo de afiliacion</label>
+                    <div class="form-control">@Model.TipoAfiliacion</div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="inputCity" class="form-label">Direccion</label>
+                    <div class="form-control">@Model.Direccion</div>
+                  </div>
+                  <div class="col-md-6">
+                    <label for="inputState" class="form-label">Telefono</label>
+                    <div class="form-control">@Model.Telefono</div>
+                  </div>
+                  <div class="col-12 text-center">
+                    <a style="width: 150px;" type="submit" asp-controller="Recepsion" asp-action="Edit"
+                      class="btn btn-outline-dark mt-5" asp-route-id="@Model.Id">Editar</a>
+                  </div>
+                  <div class="d-flex">
+                    <div class="col-6">
+                      <button style="width: 150px;" type="submit" class="btn btn-outline-dark">Ausente</button>
+                    </div>
+                    <div class="col-6 d-flex align-items-end flex-column">
+                      <a style="width: 150px;" class="btn btn-outline-dark" asp-route-id="@ViewBag.TurnoId">Siguiente</a>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <button id="btnLlamarUsuario" style="width: 150px;" type="button"
+                      class="btn btn-outline-dark">Llamar Usuario</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
-</div>
-  </body>
+  </div>
+</body>
 <script>
-    document.getElementById('btnLlamarUsuario').addEventListener('click', function() {
-        // Obtener el valor del input con el nombre del usuario
-        var nombreUsuario = document.getElementById('nombreUsuario').value;
+  document.getElementById('btnLlamarUsuario').addEventListener('click', function () {
+    // Obtener el valor del input con el nombre del usuario
+    var nombreUsuario = document.getElementById('nombreUsuario').value;
 
-        // Verificar si se ingresó un nombre de usuario
-        if (nombreUsuario.trim() === '') {
-            alert('Por favor, ingresa el nombre del usuario.');
-            return;
-        }
+    // Verificar si se ingresó un nombre de usuario
+    if (nombreUsuario.trim() === '') {
+      alert('Por favor, ingresa el nombre del usuario.');
+      return;
+    }
 
-        // Texto que deseas que se reproduzca en altavoz
-        var texto = 'Llamando a ' + nombreUsuario;
+    // Texto que deseas que se reproduzca en altavoz
+    var texto = 'Llamando a ' + nombreUsuario;
 
-        // Verificar si el navegador admite la síntesis de voz
-        if ('speechSynthesis' in window) {
-            // Crear un objeto SpeechSynthesisUtterance
-            var mensaje = new SpeechSynthesisUtterance(texto);
+    // Verificar si el navegador admite la síntesis de voz
+    if ('speechSynthesis' in window) {
+      // Crear un objeto SpeechSynthesisUtterance
+      var mensaje = new SpeechSynthesisUtterance(texto);
 
-            // Reproducir el texto en altavoz
-            window.speechSynthesis.speak(mensaje);
-        } else {
-            alert('Tu navegador no admite la síntesis de voz.');
-        }
-    });
+      // Reproducir el texto en altavoz
+      window.speechSynthesis.speak(mensaje);
+    } else {
+      alert('Tu navegador no admite la síntesis de voz.');
+    }
+  });
 </script>
