@@ -18,6 +18,11 @@ namespace Gestion_de_Turnos.Controllers
             return View();
         }
 
+        public IActionResult UsuarioErr()
+        {
+            return View(RedirectToAction("Index", "Usuarios"));
+        }
+
         [HttpGet]
         public IActionResult UsuarioR(string NI)
         {
@@ -25,6 +30,9 @@ namespace Gestion_de_Turnos.Controllers
             if (usuario!= null)
             {
                 HttpContext.Session.SetString("DocumentoUser", NI);
+            }
+            else {
+                return RedirectToAction("UsuarioErr", "Usuarios");
             }
             return View(usuario);
         }
