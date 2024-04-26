@@ -20,7 +20,7 @@ namespace Gestion_de_Turnos.Controllers
     {
       var Turno = _context.Turnos.FirstOrDefault(t => t.Estado == "En proceso");
       ViewBag.TurnoId = Turno.Id;
-      
+
       if (Turno.TipoServicio == "Solicitud de citas")
       {
         ViewBag.TurnoText = "SC" + "-" + Turno.Id;
@@ -37,7 +37,11 @@ namespace Gestion_de_Turnos.Controllers
       {
         ViewBag.TurnoText = "IG" + "-" + Turno.Id;
       }
-      
+      else if (Turno.TipoServicio == "Atencion Prioritaria")
+      {
+        ViewBag.TurnoText = "AP" + "-" + Turno.Id;
+      }
+
       var usuario =
         _context.Usuarios.FirstOrDefault(u => u.Id == Turno.IdUsuario);
       return View(usuario);
@@ -73,13 +77,13 @@ namespace Gestion_de_Turnos.Controllers
     {
       var turnoActual = _context.Turnos.FirstOrDefault(t => t.Id == id);
       turnoActual.Estado = "Finalizado";
-      
+
       _context.Turnos.Update(turnoActual);
       _context.SaveChanges();
 
       var turnoSiguiente = _context.Turnos.FirstOrDefault(t => t.Estado == "En espera");
       turnoSiguiente.Estado = "En proceso";
-      
+
       _context.Turnos.Update(turnoSiguiente);
       _context.SaveChanges();
 
