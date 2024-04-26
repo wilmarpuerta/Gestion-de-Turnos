@@ -20,7 +20,7 @@ namespace Gestion_de_Turnos.Controllers
 
         public IActionResult UsuarioErr()
         {
-            return View(RedirectToAction("Index", "Usuarios"));
+            return View();
         }
 
         [HttpGet]
