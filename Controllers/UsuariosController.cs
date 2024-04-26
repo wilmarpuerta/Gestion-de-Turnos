@@ -31,9 +31,9 @@ namespace Gestion_de_Turnos.Controllers
 
 
 
-        public IActionResult UsuarioN(string NI)
+        public IActionResult UsuarioN()
         {
-            HttpContext.Session.SetString("DocumentoUser", NI);
+
             return View();
         }
 
