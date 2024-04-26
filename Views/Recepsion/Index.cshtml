@@ -22,11 +22,8 @@
         <h4 class="text-light font-weight-bold"> Solicitud de Servicio</h4>
       </div>
       <div style="width: 18rem;" class="menu">
-        <a class="d-block p-3 text-light" style="text-decoration: none;" asp-area="" asp-controller="" asp-action="">
-          <ion-icon name="person-add-outline" class="text-center me-1 lead"></ion-icon> Turno
-        </a>
-        <a class="d-block p-3 text-light" style="text-decoration: none;" asp-area="" asp-controller="" asp-action="">
-          <ion-icon name="sync-circle-outline" class="me-1 lead"></ion-icon>Aqui muestra el turno</a>
+        <div style="color: #fff;">Turno</div>
+        <div style="color: #fff;">Aqui muestra el turno</div>
         <input type="text" id="nombreUsuario" value="@ViewBag.TurnoText">
       </div>
     </div>
@@ -78,7 +75,8 @@
                       <button style="width: 150px;" type="submit" class="btn btn-outline-dark">Ausente</button>
                     </div>
                     <div class="col-6 d-flex align-items-end flex-column">
-                      <a style="width: 150px;" class="btn btn-outline-dark" asp-action="SiguienteTurno" asp-route-id="@ViewBag.TurnoId">Siguiente</a>
+                      <a style="width: 150px;" class="btn btn-outline-dark" asp-action="SiguienteTurno"
+                        asp-route-id="@ViewBag.TurnoId">Siguiente</a>
                     </div>
                   </div>
                   <div class="col-12">
