@@ -27,7 +27,7 @@
             </a>
             <a class="d-block p-3 text-light" style="text-decoration: none;" asp-area="" asp-controller="" asp-action="">
                 <ion-icon name="sync-circle-outline" class="me-1 lead"></ion-icon>Aqui muestra el turno</a>
-                <input type="text" id="nombreUsuario" placeholder="Nombre del usuario">
+                <input type="text" id="nombreUsuario" value="@ViewBag.TurnoText">
         </div>
     </div>
     <div class="w-100">
@@ -40,33 +40,33 @@
                                 <a style="width: 150px;" asp-controller="Recepsion" asp-action="Create" class="btn btn-outline-dark">Crear</a>
                               </div>
                             <h1 class="text-center font-weight-bold mb-5">Nombre Completo</h1>
-                            <h3 class="text-center font-weight-bold mb-5">Pepito Perez</h3>
+                            <h3 class="text-center font-weight-bold mb-5">@Model.Nombre</h3>
                             <hr/>
                             <form class="row g-3">
                               <div class="col-md-6">
                                 <label for="inputEmail4" class="form-label">Documento</label>
-                                <div class="form-control">5646543</div>
+                                <div class="form-control">@Model.Documento</div>
                                 
                               </div>
                               <div class="col-md-6">
                                 <label for="inputPassword4" class="form-label">Fecha de Nacimiento</label>
-                                <div class="form-control">14 noviembre 1987</div>
+                                <div class="form-control">@Model.FechaNacimiento</div>
                               </div>
                               <div class="col-6">
                                 <label for="inputAddress" class="form-label">Correo</label>
-                                <div class="form-control">correo@gmail.com</div>
+                                <div class="form-control">@Model.CorreoElectronico</div>
                               </div>
                               <div class="col-6">
                                 <label for="inputAddress2" class="form-label">Tipo de afiliacion</label>
-                                <div class="form-control">Cotizante</div>
+                                <div class="form-control">@Model.TipoAfiliacion</div>
                               </div>
                               <div class="col-md-6">
                                 <label for="inputCity" class="form-label">Direccion</label>
-                                <div class="form-control">Calle Feliz</div>
+                                <div class="form-control">@Model.Direccion</div>
                               </div>
                               <div class="col-md-6">
                                 <label for="inputState" class="form-label">Telefono</label>
-                                <div class="form-control">123456789</div>
+                                <div class="form-control">@Model.Telefono</div>
                               </div>
                               <div class="col-12 text-center">
                                 <a style="width: 150px;" type="submit" asp-controller="Recepsion" asp-action="Edit" class="btn btn-outline-dark mt-5">Editar</a>
