@@ -24,7 +24,7 @@
       <div style="width: 18rem;" class="menu">
         <div style="color: #fff;">Turno</div>
         <div style="color: #fff;">Aqui muestra el turno</div>
-        <input type="text" id="nombreUsuario" value="@ViewBag.TurnoText">
+        <input disabled type="text" id="nombreUsuario" value="@ViewBag.TurnoText">
       </div>
     </div>
     <div class="w-100">
@@ -38,7 +38,7 @@
                     class="btn btn-outline-dark">Crear</a>
                 </div>
                 <h1 class="text-center font-weight-bold mb-5">Nombre Completo</h1>
-                <h3 class="text-center font-weight-bold mb-5">@Model.Nombre</h3>
+                <h3 class="text-center font-weight-bold mb-5">@Model.Nombre @Model.Apellido</h3>
                 <hr />
                 <form class="row g-3">
                   <div class="col-md-6">
@@ -72,7 +72,8 @@
                   </div>
                   <div class="d-flex">
                     <div class="col-6">
-                      <button style="width: 150px;" type="submit" class="btn btn-outline-dark">Ausente</button>
+                      <a style="width: 150px;" type="submit" class="btn btn-outline-dark" asp-action="Ausente"
+                        asp-route-id="@ViewBag.TurnoId">Ausente</a>
                     </div>
                     <div class="col-6 d-flex align-items-end flex-column">
                       <a style="width: 150px;" class="btn btn-outline-dark" asp-action="SiguienteTurno"
