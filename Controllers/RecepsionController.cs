@@ -113,6 +113,25 @@ namespace Gestion_de_Turnos.Controllers
 
     }
 
+    public IActionResult Ausente(int id)
+    {
+      var turnoActual = _context.Turnos.FirstOrDefault(t => t.Id == id);
+
+      turnoActual.Estado = "Ausente";
+
+      _context.Turnos.Update(turnoActual);
+      _context.SaveChanges();
+
+      var turnoSiguiente = _context.Turnos.FirstOrDefault(t => t.Estado == "En espera");
+      turnoSiguiente.Estado = "En proceso";
+
+      _context.Turnos.Update(turnoSiguiente);
+      _context.SaveChanges();
+
+      return RedirectToAction("Index");
+
+    }
+
   }
 }
 
