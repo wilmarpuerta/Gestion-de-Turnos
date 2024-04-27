@@ -75,9 +75,16 @@ namespace Gestion_de_Turnos.Controllers
       return RedirectToAction("Index", "Recepsion");
     }
 
-    [HttpPost]
-    public async Task<IActionResult> Edit(int id, Usuario usuario)
+    public IActionResult Edit(int id)
     {
+
+      return View(_context.Usuarios.FirstOrDefault(u => u.Id == id));
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Edit(Usuario usuario)
+    {
+
       _context.Usuarios.Update(usuario);
       await _context.SaveChangesAsync();
       return RedirectToAction("Index");
