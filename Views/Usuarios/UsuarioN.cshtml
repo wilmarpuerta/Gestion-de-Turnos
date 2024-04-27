@@ -14,7 +14,7 @@
         </form>
     </div>
     <div class="container-service">
-       <form asp-action="AP" method="post">
+        <form asp-action="AP" method="post">
             <button>
                 <div class="fs-4">Atención prioritaria</div>
             </button>
@@ -22,5 +22,6 @@
     </div>
 </section>
 <div class="d-flex justify-content-center mt-4">
-    <button class="btn bg-success text-white fs-5" style="margin-top: 100px">Ingresar</button>
+    <a class="btn bg-secondary text-white fs-5" style="margin-top: 100px" asp-action="Index"
+        asp-controller="Usuarios">Atras</a>
 </div>
