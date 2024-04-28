@@ -105,8 +105,12 @@ namespace Gestion_de_Turnos.Controllers
 
     public IActionResult Edit(int id)
     {
-
-      return View(_context.Usuarios.FirstOrDefault(u => u.Id == id));
+      var usuario = _context.Usuarios.FirstOrDefault(u => u.Id == id);
+      if (usuario == null)
+      {
+        return RedirectToAction("Index");
+      }
+      return View(usuario);
     }
 
     [HttpPost]
