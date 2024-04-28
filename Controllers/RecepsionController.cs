@@ -26,16 +26,24 @@ namespace Gestion_de_Turnos.Controllers
 
         if (turnoEspera == null)
         {
-          var user = _context.Usuarios.First(u => u.Id == 7);
-          ViewBag.TurnoId = user.Id;
-          return View(user);
+          ViewBag.TurnoText = "No hay turnos";
+          ViewBag.Nombre = "No hay turnos";
+          ViewBag.Apellido = "";
+          ViewBag.Documento = "";
+          ViewBag.FechaNacimiento = "";
+          ViewBag.CorreoElectronico = "";
+          ViewBag.TipoAfiliacion = "";
+          ViewBag.Direccion = "";
+          ViewBag.Telefono = "";
+          ViewBag.IdUsuario = "";
+          
+          return View();
         }
         
         turnoEspera.Estado = "En proceso";
-
         _context.Turnos.Update(turnoEspera);
         _context.SaveChanges();
-        return View("Index");
+        return RedirectToAction("Index");
       }
 
       ViewBag.TurnoId = Turno.Id;
@@ -60,13 +68,25 @@ namespace Gestion_de_Turnos.Controllers
       {
         ViewBag.TurnoText = "AP" + "-" + Turno.Id;
       }
-      else if (Turno.TipoServicio == "No hay mas turnos")
-      {
-        ViewBag.TurnoText = "No hay mas turnos";
-      }
 
       var usuario =
         _context.Usuarios.FirstOrDefault(u => u.Id == Turno.IdUsuario);
+      
+      if (usuario == null)
+      {
+        return RedirectToAction("Index");
+      }
+      
+      ViewBag.Nombre = usuario.Nombre;
+      ViewBag.Apellido = usuario.Apellido;
+      ViewBag.Documento = usuario.Documento;
+      ViewBag.FechaNacimiento = usuario.FechaNacimiento;
+      ViewBag.CorreoElectronico = usuario.CorreoElectronico;
+      ViewBag.TipoAfiliacion = usuario.TipoAfiliacion;
+      ViewBag.Direccion = usuario.Direccion;
+      ViewBag.Telefono = usuario.Telefono;
+      ViewBag.IdUsuario = usuario.Id;
+      
       return View(usuario);
     }
 
@@ -104,7 +124,6 @@ namespace Gestion_de_Turnos.Controllers
 
       if (turnoActual == null)
       {
-        ViewBag.TurnoText = "No hay más turnos";
         return RedirectToAction("Index");
       }
 
