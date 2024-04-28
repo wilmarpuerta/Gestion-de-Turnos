@@ -2,6 +2,43 @@
     ViewData["Title"] = "Lista de Espera";
 }
 
+@{
+    List<string> turnoTextList = new List<string>();
+    int count = 0;
+
+    foreach (var turno in Model)
+    {
+        if (turno.Estado == "En espera")
+        {
+            string turnoText = "";
+            switch (turno.TipoServicio)
+            {
+                case "Solicitud de citas":
+                    turnoText = "SC-" + turno.Id;
+                    break;
+                case "Autorización de medicamentos":
+                    turnoText = "AM-" + turno.Id;
+                    break;
+                case "Pago de facturas":
+                    turnoText = "PF-" + turno.Id;
+                    break;
+                case "Información en general":
+                    turnoText = "IG-" + turno.Id;
+                    break;
+            }
+            if (!string.IsNullOrEmpty(turnoText))
+            {
+                turnoTextList.Add(turnoText);
+                count++;
+                if (count >= 4)
+                {
+                    break;
+                }
+            }
+        }
+    }
+}
+
 <div class="container">
     <div class="row d-flex justify-content-center align-items-center vh-100">
         <div class="televisor mb-2 " >
@@ -13,49 +50,28 @@
                     <div class="col-4"  >
                         <table class="table table-bordered m-0 text-center" >
                             <tr>
-                                <th>Modulo</th>
+                                <th>Estado</th>
                                 <th>Turno</th>
                             </tr>
-                            @for (int i = 0; i < 4; i++){
-                                foreach (var Turno in Model){
-                            
-                                if (Turno.Estado == "En espera"){
-
-                                    if (Turno.TipoServicio == "Solicitud de citas")
-                                    {
-                                        ViewBag.TurnoText = "SC" + "-" + Turno.Id;
-                                    }
-                                    else if (Turno.TipoServicio == "Autorización de medicamentos")
-                                    {
-                                        ViewBag.TurnoText = "AM" + "-" + Turno.Id;
-                                    }
-                                    else if (Turno.TipoServicio == "Pago de facturas")
-                                    {
-                                        ViewBag.TurnoText = "PF" + "-" + Turno.Id;
-                                    }
-                                    else if (Turno.TipoServicio == "Información en general")
-                                    {
-                                        ViewBag.TurnoText = "IG" + "-" + Turno.Id;
-                                    }
+                            @for (int i = 0; i < turnoTextList.Count; i++)
+                                {
                                     <tr>
                                         <td>
-                                            <b>1</b>
+                                            <p>En espera</p>
                                         </td>
                                         <td>
-                                            <p>@ViewBag.TurnoText</p>
+                                            <p>@turnoTextList[i]</p>
                                         </td>
                                     </tr>
-                                    }
                                 }
-                            break;
-                            }
+                            
                         </table>
                     </div>
                     <div class="col-8 d-flex justify-content-center align-items-center">
                         <div class="column text-center">
                             <h3 style="color: red;">Turno</h3>
                             <h3>@ViewBag.TurnoText</h3>
-                            <h3 style="color: red;">Módulo 3</h3>
+                            <h3 style="color: red;">Módulo 1</h3>
                         </div>
                     </div>
                 </div>
@@ -67,5 +83,5 @@
 <script>
     setTimeout(function() {
         window.location.href = '@Url.Action("Index", "Televisor")';
-    }, 2000);
+    }, 3000);
 </script>
