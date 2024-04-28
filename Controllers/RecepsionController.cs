@@ -26,7 +26,8 @@ namespace Gestion_de_Turnos.Controllers
 
         if (turnoEspera == null)
         {
-          var user = _context.Usuarios.FirstOrDefault(u => u.Id == 7);
+          var user = _context.Usuarios.First(u => u.Id == 7);
+          ViewBag.TurnoId = user.Id;
           return View(user);
         }
         
@@ -98,7 +99,7 @@ namespace Gestion_de_Turnos.Controllers
       {
         ViewBag.TurnoText = "No hay mas turnos";
         
-        return View("Index");
+        return RedirectToAction("Index");
 
       }
 
