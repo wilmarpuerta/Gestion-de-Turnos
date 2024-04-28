@@ -104,14 +104,11 @@ namespace Gestion_de_Turnos.Controllers
 
       if (turnoActual == null)
       {
-        ViewBag.TurnoText = "No hay mas turnos";
-        
+        ViewBag.TurnoText = "No hay más turnos";
         return RedirectToAction("Index");
-
       }
 
       turnoActual.Estado = "Finalizado";
-
       _context.Turnos.Update(turnoActual);
       _context.SaveChanges();
 
@@ -119,15 +116,14 @@ namespace Gestion_de_Turnos.Controllers
 
       if (turnoSiguiente == null)
       {
-        return View("Index");
+        return RedirectToAction("Index");
       }
-      turnoSiguiente.Estado = "En proceso";
 
+      turnoSiguiente.Estado = "En proceso";
       _context.Turnos.Update(turnoSiguiente);
       _context.SaveChanges();
 
       return RedirectToAction("Index");
-
     }
 
     public IActionResult Ausente(int id)
