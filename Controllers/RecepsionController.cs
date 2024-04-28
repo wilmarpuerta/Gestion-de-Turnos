@@ -1,15 +1,12 @@
-using System.Diagnostics;
 using Gestion_de_Turnos.Data;
 using Microsoft.AspNetCore.Mvc;
 using Gestion_de_Turnos.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace Gestion_de_Turnos.Controllers
 {
   public class RecepsionController : Controller
   {
-
-    public readonly BaseContext _context;
+    private readonly BaseContext _context;
 
     public RecepsionController(BaseContext context)
     {
@@ -99,7 +96,7 @@ namespace Gestion_de_Turnos.Controllers
     public async Task<IActionResult> Add(Usuario usuario)
     {
       await _context.Usuarios.AddAsync(usuario);
-      _context.SaveChanges();
+      await _context.SaveChangesAsync();
       return RedirectToAction("Index", "Recepsion");
     }
 
@@ -116,7 +113,6 @@ namespace Gestion_de_Turnos.Controllers
     [HttpPost]
     public async Task<IActionResult> Edit(Usuario usuario)
     {
-
       _context.Usuarios.Update(usuario);
       await _context.SaveChangesAsync();
       return RedirectToAction("Index");
@@ -153,21 +149,28 @@ namespace Gestion_de_Turnos.Controllers
     {
       var turnoActual = _context.Turnos.FirstOrDefault(t => t.Id == id);
 
-      turnoActual.Estado = "Ausente";
+      if (turnoActual == null)
+      {
+        return RedirectToAction("Index");
+      }
 
+      turnoActual.Estado = "Ausente";
       _context.Turnos.Update(turnoActual);
       _context.SaveChanges();
 
       var turnoSiguiente = _context.Turnos.FirstOrDefault(t => t.Estado == "En espera");
+      
+      if (turnoSiguiente == null)
+      {
+        return RedirectToAction("Index");
+      }
+      
       turnoSiguiente.Estado = "En proceso";
-
       _context.Turnos.Update(turnoSiguiente);
       _context.SaveChanges();
 
       return RedirectToAction("Index");
-
     }
-
   }
 }
 
