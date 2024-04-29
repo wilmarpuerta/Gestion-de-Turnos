@@ -13,17 +13,21 @@
   <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
   <link rel="stylesheet" href="~/Gestion_de_Turnos.styles.css" asp-append-version="true" />
 </head>
-
+<style>
+  form div{
+  min-height: 38px;
+  }
+</style>
 <body>
   <div class="d-flex">
-    <div style="min-height: 100vh; background-color: #121D59;" class="sidebar-container">
-      <div style="padding: .875rem 1.25rem;" class="logo">
-        <h4 class="text-light font-weight-bold"> Solicitud de Servicio</h4>
+    <div style="min-height: 100vh; background-color: #121D59;" class="sidebar-container d-flex flex-column justify-content-center align-items-center">
+      <div class="logo">
+        <h4 class="text-light font-weight-bold fs-3"> Solicitud de Servicio</h4>
       </div>
-      <div style="width: 18rem;" class="menu">
-        <div style="color: #fff;">Turno</div>
-        <div style="color: #fff;">Aqui muestra el turno</div>
-        <input disabled type="text" id="nombreUsuario" value="@ViewBag.TurnoText">
+      <div style="width: 18rem; margin-top: 30px" class="menu d-flex flex-column align-items-center">
+        <b style="color: #fff; font-size: 1.3rem">Turno</b><br/>
+        <input style="background: none; border: none; text-align: center; color: white; font-weight: bold; font-size: 1.2rem;" disabled type="text" id="nombreUsuario" value="@ViewBag.TurnoText">
+        <p style="color: #fff; font-size: 1.3rem;">@ViewBag.TipoServicio</p>
       </div>
     </div>
     <div class="w-100">

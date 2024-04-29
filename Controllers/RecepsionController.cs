@@ -66,6 +66,8 @@ namespace Gestion_de_Turnos.Controllers
         ViewBag.TurnoText = "AP" + "-" + Turno.Id;
       }
 
+      ViewBag.TipoServicio = Turno.TipoServicio;
+      
       var usuario =
         _context.Usuarios.FirstOrDefault(u => u.Id == Turno.IdUsuario);
       

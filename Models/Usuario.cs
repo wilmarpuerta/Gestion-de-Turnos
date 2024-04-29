@@ -9,7 +9,7 @@ namespace Gestion_de_Turnos.Models
         public string? CorreoElectronico { get; set; }
         public string? Direccion { get; set; }
         public string? Telefono { get; set; }
-        public DateTime? FechaNacimiento { get; set; }
+        public DateOnly? FechaNacimiento { get; set; }
         public string? TipoAfiliacion { get; set; }
     }
 }
