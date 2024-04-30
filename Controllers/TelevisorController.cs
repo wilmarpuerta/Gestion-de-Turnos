@@ -18,23 +18,27 @@ namespace Gestion_de_Turnos {
             var ultimoRegistro = _context.Turnos.FirstOrDefault(x => x.Estado == "En proceso");
             if (ultimoRegistro == null)
             {
-                ViewBag.TurnoText = "No hay turnos en cola";
+                ViewBag.TurnoText = "No hay turnos en proceso";
             }
             else if (ultimoRegistro.TipoServicio == "Solicitud de citas")
             {
-                ViewBag.TurnoText = "SC" + "-" + ultimoRegistro.Id;
+                ViewBag.TurnoText = "SC-" + ultimoRegistro.Id;
             }
             else if (ultimoRegistro.TipoServicio == "Autorización de medicamentos")
             {
-                ViewBag.TurnoText = "AM" + "-" + ultimoRegistro.Id;
+                ViewBag.TurnoText = "AM-" + ultimoRegistro.Id;
             }
             else if (ultimoRegistro.TipoServicio == "Pago de facturas")
             {
-                ViewBag.TurnoText = "PF" + "-" + ultimoRegistro.Id;
+                ViewBag.TurnoText = "PF-" + ultimoRegistro.Id;
             }
             else if (ultimoRegistro.TipoServicio == "Información en general")
             {
-                ViewBag.TurnoText = "IG" + "-" + ultimoRegistro.Id;
+                ViewBag.TurnoText = "IG-" + ultimoRegistro.Id;
+            }
+            else if (ultimoRegistro.TipoServicio == "Atencion Prioritaria")
+            {
+                ViewBag.TurnoText = "AP-" + ultimoRegistro.Id;
             }
             return View(_context.Turnos.ToList());
         }
