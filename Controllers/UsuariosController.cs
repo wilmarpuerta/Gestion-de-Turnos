@@ -71,6 +71,7 @@ namespace Gestion_de_Turnos.Controllers
             {
                 ViewBag.TurnoText = "AP" + "-" + ultimoRegistro.Id;
             }
+            HttpContext.Session.Clear();
             return View();
         }
 
