@@ -19,26 +19,36 @@ namespace Gestion_de_Turnos.Controllers
 
       if (Turno == null)
       {
-        var turnoEspera = _context.Turnos.FirstOrDefault(t => t.Estado == "En espera");
+        var turnoPrioritario = _context.Turnos.FirstOrDefault(t => t.Estado == "En espera" && t.TipoServicio == "Atencion Prioritaria");
 
-        if (turnoEspera == null)
+        if (turnoPrioritario == null)
         {
-          ViewBag.TurnoText = "No hay turnos";
-          ViewBag.Nombre = "No hay turnos";
-          ViewBag.Apellido = "";
-          ViewBag.Documento = "";
-          ViewBag.FechaNacimiento = "";
-          ViewBag.CorreoElectronico = "";
-          ViewBag.TipoAfiliacion = "";
-          ViewBag.Direccion = "";
-          ViewBag.Telefono = "";
-          ViewBag.IdUsuario = "";
+          var turnoEspera = _context.Turnos.FirstOrDefault(t => t.Estado == "En espera");
           
-          return View();
+          if (turnoEspera == null)
+          {
+            ViewBag.TurnoText = "No hay turnos";
+            ViewBag.Nombre = "No hay turnos";
+            ViewBag.Apellido = "";
+            ViewBag.Documento = "";
+            ViewBag.FechaNacimiento = "";
+            ViewBag.CorreoElectronico = "";
+            ViewBag.TipoAfiliacion = "";
+            ViewBag.Direccion = "";
+            ViewBag.Telefono = "";
+            ViewBag.IdUsuario = "";
+            
+            return View();
+          }
+          
+          turnoEspera.Estado = "En proceso";
+          _context.Turnos.Update(turnoEspera);
+          _context.SaveChanges();
+          return RedirectToAction("Index");
         }
         
-        turnoEspera.Estado = "En proceso";
-        _context.Turnos.Update(turnoEspera);
+        turnoPrioritario.Estado = "En proceso";
+        _context.Turnos.Update(turnoPrioritario);
         _context.SaveChanges();
         return RedirectToAction("Index");
       }
@@ -133,15 +143,26 @@ namespace Gestion_de_Turnos.Controllers
       _context.Turnos.Update(turnoActual);
       _context.SaveChanges();
 
-      var turnoSiguiente = _context.Turnos.FirstOrDefault(t => t.Estado == "En espera");
+      var turnoPrioritario = _context.Turnos.FirstOrDefault(t => t.Estado == "En espera" && t.TipoServicio == "Atencion Prioritaria");
 
-      if (turnoSiguiente == null)
+      if (turnoPrioritario == null)
       {
+        var turnoSiguiente = _context.Turnos.FirstOrDefault(t => t.Estado == "En espera");
+        if (turnoSiguiente == null)
+        {
+          return RedirectToAction("Index");
+        }  
+        
+        turnoSiguiente.Estado = "En proceso";
+        _context.Turnos.Update(turnoSiguiente);
+        _context.SaveChanges();
+        
         return RedirectToAction("Index");
       }
-
-      turnoSiguiente.Estado = "En proceso";
-      _context.Turnos.Update(turnoSiguiente);
+      
+      
+      turnoPrioritario.Estado = "En proceso";
+      _context.Turnos.Update(turnoPrioritario);
       _context.SaveChanges();
 
       return RedirectToAction("Index");
@@ -160,15 +181,24 @@ namespace Gestion_de_Turnos.Controllers
       _context.Turnos.Update(turnoActual);
       _context.SaveChanges();
 
-      var turnoSiguiente = _context.Turnos.FirstOrDefault(t => t.Estado == "En espera");
-      
-      if (turnoSiguiente == null)
+      var turnoPrioritario = _context.Turnos.FirstOrDefault(t => t.Estado == "En espera" && t.TipoServicio == "Atencion Prioritaria");
+
+      if (turnoPrioritario == null)
       {
-        return RedirectToAction("Index");
+        var turnoSiguiente = _context.Turnos.FirstOrDefault(t => t.Estado == "En espera");
+        
+        if (turnoSiguiente == null)
+        {
+          return RedirectToAction("Index");
+        }
+        
+        turnoSiguiente.Estado = "En proceso";
+        _context.Turnos.Update(turnoSiguiente);
+        _context.SaveChanges();
       }
       
-      turnoSiguiente.Estado = "En proceso";
-      _context.Turnos.Update(turnoSiguiente);
+      turnoPrioritario.Estado = "En proceso";
+      _context.Turnos.Update(turnoPrioritario);
       _context.SaveChanges();
 
       return RedirectToAction("Index");
