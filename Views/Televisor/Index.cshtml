@@ -4,6 +4,7 @@
 
 @{
     List<string> turnoTextList = new List<string>();
+    List<string> atencionPrioritariaList = new List<string>();
     int count = 0;
 
     foreach (var turno in Model)
@@ -25,13 +26,22 @@
                 case "Información en general":
                     turnoText = "IG-" + turno.Id;
                     break;
-                case "Atencion Prioritaria":
-                        turnoText = "AP-" + turno.Id;
+                case "Atención Prioritaria":
+                    turnoText = "AP-" + turno.Id;
                     break;
             }
+
             if (!string.IsNullOrEmpty(turnoText))
             {
-                turnoTextList.Add(turnoText);
+                if (turnoText.StartsWith("AP-"))
+                {
+                    atencionPrioritariaList.Add(turnoText);
+                }
+                else
+                {
+                    turnoTextList.Add(turnoText);
+                }
+
                 count++;
                 if (count >= 4)
                 {
@@ -40,7 +50,10 @@
             }
         }
     }
+    turnoTextList.InsertRange(0, atencionPrioritariaList);
 }
+
+
 
 <div class="container">
     <div class="row d-flex justify-content-center align-items-center vh-100">
